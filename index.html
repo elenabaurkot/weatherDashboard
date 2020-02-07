@@ -1,47 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Weather Dashboard</title>
     <!--link to bootstrap-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css"
+    />
     <!--link to google apis-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"/>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
     <!--link to my css-->
-    <link rel="stylesheet" href="./assets/css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
     <!--navbar-->
     <nav class="navbar navbar-light bg-dark text-white">
-        <h1>Weather Dashboard</h1>
+      <h1>Weather Dashboard</h1>
     </nav>
 
     <!--main content-->
     <div class="container-fluid">
       <div class="row">
-          <!--search form column-->
-          <div class="col-3 sidenav bg-light">
-                
-          </div>
-          <!--column where APIs show-->
-          <div class="col-9">
-              <!--city, date, weather info-->
-              <div class="row">
+        <!--search form column-->
+        <div class="col-3 sidenav bg-light">
+          <!-- This form will be where users search for a city -->
+          <form id="city-search-form">
+            <label for="city-search-label" id="search-label">Search for a city:</label>
+            <input type="text" id="city-search"/><br/>
 
-              </div>
-              <!--five day forecast-->
-              <div class="row">
-
-              </div>
-          </div>
+            <!-- This button will trigger our AJAX call -->
+            <input id="find-movie" type="submit" value="City Search"/>
+          </form>
+        </div>
+        <!--column where APIs show-->
+        <div class="col-9">
+          <!--city, date, weather info-->
+          <div class="row"></div>
+          <!--five day forecast-->
+          <div class="row"></div>
+        </div>
       </div>
-    </div><!--end container-->
+    </div>
+    <!--end container-->
 
     <!--link to jquery library-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!--link to my javascript-->
-    <script src="assets/js/index.js"></script>  
-</body>
+    <script src="assets/js/index.js"></script>
+  </body>
 </html>
