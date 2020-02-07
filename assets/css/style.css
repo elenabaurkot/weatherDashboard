@@ -17,4 +17,19 @@ input{
     border-radius: 5px;
     border: 1px solid #ccc;
     line-height: 30px;
+    margin-right: 0px !important;
+}
+
+h1 {
+    letter-spacing: 1px;
+}
+
+button{
+    color: white;
+    background: rgb(6, 118, 238);
+    border-radius: 4px;
+    box-shadow: 0px 0px 0px 4px rgba(68, 158, 254, 0.618);
+    padding: 10px;
+    font-size: 15px;
+    margin-left: 0px !important;
 }

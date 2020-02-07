@@ -15,6 +15,8 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
+    <!--link to fontawesome for icons-->
+    <link rel="stylesheet"href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"/>
     <!--link to my css-->
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
@@ -31,11 +33,10 @@
         <div class="col-3 sidenav bg-light">
           <!-- This form will be where users search for a city -->
           <form id="city-search-form">
-            <label for="city-search-label" id="search-label">Search for a city:</label>
-            <input type="text" id="city-search"/><br/>
-
+            <label for="city-search-label" id="search-label">Search for a city:</label><br>
+            <input type="text" id="city-search"/>
             <!-- This button will trigger our AJAX call -->
-            <input id="find-movie" type="submit" value="City Search"/>
+            <button i class="fas fa-search" type="submit" id="find-movie"></button i>
           </form>
         </div>
         <!--column where APIs show-->
