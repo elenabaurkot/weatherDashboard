@@ -36,15 +36,23 @@
             <label for="city-search-label" id="search-label">Search for a city:</label><br>
             <input type="text" id="city-search"/>
             <!-- This button will trigger our AJAX call -->
-            <button i class="fas fa-search" type="submit" id="find-movie"></button i>
+            <button i class="fas fa-search" type="submit" id="search-button"></button i>
           </form>
+          <!--list where previous searches will appear-->
+          <ul id="city-searches"></ul>
         </div>
         <!--column where APIs show-->
         <div class="col-9">
           <!--city, date, weather info-->
-          <div class="row"></div>
+          <div class="row">
+            <div id="city-info">
+              <h3><!--searched city anme and current date appended here--></h3>
+            </div>
+          </div>
           <!--five day forecast-->
-          <div class="row"></div>
+          <div class="row">
+            <div id="five-day-forecast"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -52,6 +60,8 @@
 
     <!--link to jquery library-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!--link to moment.js library-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <!--link to my javascript-->
     <script src="assets/js/index.js"></script>
   </body>

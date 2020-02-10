@@ -4,7 +4,6 @@
 
 .sidenav{
     min-height: 100vh !important;
-    position: fixed;
 }
 
 label{
@@ -17,6 +16,7 @@ input{
     border-radius: 5px;
     border: 1px solid #ccc;
     line-height: 30px;
+    width: 200px;
     margin-right: 0px !important;
 }
 
@@ -32,4 +32,18 @@ button{
     padding: 10px;
     font-size: 15px;
     margin-left: 0px !important;
+}
+
+#city-info{
+    margin: 15px;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    padding: 30px;
+    width: 100%;
+    line-height: 50px;
+    letter-spacing: 1px;
+}
+
+#five-day-forecast{
+    padding: 30px;
 }
