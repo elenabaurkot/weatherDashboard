@@ -34,7 +34,7 @@ button{
     margin-left: 0px !important;
 }
 
-#city-info{
+.info-container{
     margin: 15px;
     border: solid 1px #ccc;
     border-radius: 5px;
@@ -46,4 +46,11 @@ button{
 
 #five-day-forecast{
     padding: 30px;
+}
+
+.uv{
+    background-color: red;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
 }
