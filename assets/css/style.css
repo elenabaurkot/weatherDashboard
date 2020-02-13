@@ -59,7 +59,21 @@ button{
     display: inline-block;
 }
 
-.uv{
+.uvGreen{
+    background-color: green;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.uvYellow{
+    background-color: yellow;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.uvRed{
     background-color: red;
     color: white;
     padding: 8px;

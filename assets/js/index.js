@@ -74,8 +74,17 @@ $("#search-button").click(function() {
       var uvDiv = $("<div>");
       $(cityInfoDiv).append("UV Index: ");
       // append the actual UV index with class to add the coloring
-      $("<span/>", { class: "uv", html: uvIndex }).appendTo(cityInfoDiv);
-    });
+      if (uvIndex < 3){
+        $("<span/>", { class: "uvGreen", html: uvIndex }).appendTo(cityInfoDiv);
+        }
+        else if (uvIndex > 3 && uvIndex < 7){
+          $("<span/>", { class: "uvYellow", html: uvIndex }).appendTo(cityInfoDiv);
+        }
+        else {
+          $("<span/>", { class: "uvRed", html: uvIndex }).appendTo(cityInfoDiv);
+        }
+        }
+      );
 
     // query URL for five day forecast
     var queryURL =
