@@ -48,6 +48,17 @@ button{
     padding: 30px;
 }
 
+.five-day-weather {
+    background-color: rgba(44, 87, 227, 0.927);
+    border-radius: 5px;
+    padding: 10px;
+    line-height: 35px;
+    color: white;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
 .uv{
     background-color: red;
     color: white;
