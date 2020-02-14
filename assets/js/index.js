@@ -4,13 +4,66 @@ var cityInfoDiv = $("#city-info");
 var fiveDay = $("#five-day-forecast");
 var date = moment().format("l");
 
+var searches = [];
+
+// init();
+
+function renderSearches(){
+  citySearchList.innerHTML = '';
+  // Render a new li for each search
+    for (var i = 0; i < searches.length; i++) {
+    var search = searches[i];
+    // create list item element and add CSS
+    var li = document.createElement("li");
+    li.textContent = search;
+    // li.setAttribute("data-index", i);
+    li.textContent = search;
+    li.setAttribute("class", "list");
+    // add search to the list
+    citySearchList.append(li);
+}
+};
+
+// get stored searches from local storage
+// parse JSON string to object
+function init(){
+  var storedSearches = JSON.parse(localStorage.getItem("searches"))
+  if (storedSearches !== null) {
+    searches = storedSearches;
+  }
+
+// render searches to the DOM
+renderSearches();
+};
+
+function storeSearches(){
+  localStorage.setItem("searches", JSON.stringify(searches));
+};
+
 // API key
 var APIKey = "4e94c09846770a8063c5b4f4cf22765d";
 
 // On click event for API call when user searches a city
 $("#search-button").click(function() {
   event.preventDefault();
+
+  // $("city-info").innerHTML = ""
+  // $("five-day-forecast").innerHTML =""
+  
+  // cityInfoDiv.empty();
   var city = $("#city-search").val();
+
+  // Return from function early if submitted search is blank
+  if (city === "") {
+    return;
+  }
+  // Add new search to searches array, clear the input
+  searches.push(city);
+  city.innerHTML= '';
+  
+  // Store updated searches in localStorage, re-render the list
+  storeSearches();
+  renderSearches();
 
   // adds border box and spacing for city info content
   cityInfoDiv.addClass("info-container");
@@ -30,6 +83,7 @@ $("#search-button").click(function() {
     url: queryURL,
     method: "GET"
   }).then(function(response) {
+    
     console.log(response);
 
     // icon for today's weather
