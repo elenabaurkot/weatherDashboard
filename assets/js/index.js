@@ -9,19 +9,17 @@ var searches = [];
 // init();
 
 function renderSearches(){
-  citySearchList.innerHTML = '';
-  // Render a new li for each search
-    for (var i = 0; i < searches.length; i++) {
-    var search = searches[i];
+    citySearchList.innerHTML = '';
+    var search = $("#city-search").val();
+    console.log(search);
     // create list item element and add CSS
     var li = document.createElement("li");
     li.textContent = search;
     // li.setAttribute("data-index", i);
-    li.textContent = search;
+    // li.textContent = search;
     li.setAttribute("class", "list");
     // add search to the list
     citySearchList.append(li);
-}
 };
 
 // get stored searches from local storage
@@ -37,6 +35,7 @@ renderSearches();
 };
 
 function storeSearches(){
+  // set array with new item
   localStorage.setItem("searches", JSON.stringify(searches));
 };
 
@@ -154,80 +153,27 @@ $("#search-button").click(function() {
       method: "GET"
     }).then(function(response) {
       console.log(response);
+      console.log("this is the length: " + response.list.length);
 
-      // attempt at for loop to upload 5 day weather 
-      // for (var i = 0; i < response.list.length; i ++){
-      //   if (response.list.length > 5) {
-      //     return;
-      //   }
-      //   console.log(response.list[i].main.temp);
-      // };
 
-      // DAY 1 of five-day forecast
-      // append class for 5-day weather containers
-      $("#day1").addClass("five-day-weather");
+      // for loop to append class for 5-day weather containers
+      for (var i = 7; i < response.list.length; i+=8) {
+      $("#day" + i).addClass("five-day-weather");
       // convert date from unix time stamp to mm/dd/yyyy format
-      var unixTime = new Date((response.list[7].dt)* 1000).toLocaleDateString("en-US");
+      var unixTime = new Date((response.list[i].dt)* 1000).toLocaleDateString("en-US");
       // date
       var date = "<strong>" + unixTime + "</strong><br/>";
       // icon
-      var icon = response.list[7].weather[0].icon;
+      var icon = response.list[i].weather[0].icon;
       var iconURL = "<img src=https://openweathermap.org/img/wn/" + icon + ".png>  <br>";
       // temp
-      kelvin = response.list[7].main.temp;
+      kelvin = response.list[i].main.temp;
       var temp = "Temp: " + Math.floor((kelvin - 273.15) * 1.8 + 32) + "&deg; F<br>";
       // humidity
-      humidity = "Humidity: " + response.list[7].main.humidity + "%";
+      humidity = "Humidity: " + response.list[i].main.humidity + "%";
       // append date, icon, temp, humidity
-      $("#day1").append(date, iconURL, temp, humidity);
-
-      // DAY 2 of five-day forecast
-      $("#day2").addClass("five-day-weather");
-      var unixTime = new Date((response.list[15].dt)* 1000).toLocaleDateString("en-US");
-      var date = "<strong>" + unixTime + "</strong><br/>";
-      var icon = response.list[15].weather[0].icon;
-      var iconURL = "<img src=https://openweathermap.org/img/wn/" + icon + ".png>  <br>";
-      kelvin = response.list[15].main.temp;
-      var temp = "Temp: " + Math.floor((kelvin - 273.15) * 1.8 + 32) + "&deg; F<br>";
-      humidity = "Humidity: " + response.list[15].main.humidity + "%";
-      $("#day2").append(date, iconURL, temp, humidity);
-
-      // DAY 3 of five-day forecast
-      $("#day3").addClass("five-day-weather");
-      var unixTime = new Date((response.list[23].dt)* 1000).toLocaleDateString("en-US");
-      var date = "<strong>" + unixTime + "</strong><br/>";
-      var icon = response.list[23].weather[0].icon;
-      var iconURL = "<img src=https://openweathermap.org/img/wn/" + icon + ".png>  <br>";
-      kelvin = response.list[23].main.temp;
-      var temp = "Temp: " + Math.floor((kelvin - 273.15) * 1.8 + 32) + "&deg; F<br>";
-      humidity = "Humidity: " + response.list[23].main.humidity + "%";
-      $("#day3").append(date, iconURL, temp, humidity);
-
-      // DAY 4 of five-day forecast
-      $("#day4").addClass("five-day-weather");
-      var unixTime = new Date((response.list[31].dt)* 1000).toLocaleDateString("en-US");
-      var date = "<strong>" + unixTime + "</strong><br/>";
-      var icon = response.list[31].weather[0].icon;
-      var iconURL = "<img src=https://openweathermap.org/img/wn/" + icon + ".png>  <br>";
-      kelvin = response.list[31].main.temp;
-      var temp = "Temp: " + Math.floor((kelvin - 273.15) * 1.8 + 32) + "&deg; F<br>";
-      humidity = "Humidity: " + response.list[31].main.humidity + "%";
-      $("#day4").append(date, iconURL, temp, humidity);
-
-      // DAY 5 of five-day forecast
-      $("#day5").addClass("five-day-weather");
-      var unixTime = new Date((response.list[39].dt)* 1000).toLocaleDateString("en-US");
-      var date = "<strong>" + unixTime + "</strong><br/>";
-      var icon = response.list[39].weather[0].icon;
-      var iconURL = "<img src=https://openweathermap.org/img/wn/" + icon + ".png>  <br>";
-      kelvin = response.list[39].main.temp;
-      var temp = "Temp: " + Math.floor((kelvin - 273.15) * 1.8 + 32) + "&deg; F<br>";
-      humidity = "Humidity: " + response.list[39].main.humidity + "%";
-      $("#day5").append(date, iconURL, temp, humidity);
+      $("#day" + i).append(date, iconURL, temp, humidity);
+      }
     });
   });
 });
-
-// code to append five day forecast with images
-
-// code to save the search in storage and show it in list, when you click city again should call back the same info
