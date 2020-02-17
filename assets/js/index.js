@@ -29,7 +29,6 @@ function init(){
   if (storedSearches !== null) {
     searches = storedSearches;
   }
-
 // render searches to the DOM
 renderSearches();
 };
@@ -46,8 +45,13 @@ var APIKey = "4e94c09846770a8063c5b4f4cf22765d";
 $("#search-button").click(function() {
   event.preventDefault();
 
-  // $("city-info").innerHTML = ""
-  // $("five-day-forecast").innerHTML =""
+  document.querySelector("#city-info").innerHTML = '';
+  document.getElementById("day7").innerHTML = '';
+  document.getElementById("day15").innerHTML = '';
+  document.getElementById("day23").innerHTML = '';
+  document.getElementById("day31").innerHTML = '';
+  document.getElementById("day39").innerHTML = '';
+
   
   // cityInfoDiv.empty();
   var city = $("#city-search").val();
@@ -58,7 +62,7 @@ $("#search-button").click(function() {
   }
   // Add new search to searches array, clear the input
   searches.push(city);
-  city.innerHTML= '';
+  $("#city-search").innerHTML= '';
   
   // Store updated searches in localStorage, re-render the list
   storeSearches();
@@ -66,8 +70,13 @@ $("#search-button").click(function() {
 
   // adds border box and spacing for city info content
   cityInfoDiv.addClass("info-container");
+ 
+  // create header element
+  var header = document.createElement("h3")
   // append header with city search name and date
-  $("h3").append(city + " (" + date + ")");
+  header.innerHTML = city + " (" + date + ")";
+  cityInfoDiv.append(header);
+
 
   // query URL for city conditions
   var queryURL =
@@ -91,7 +100,7 @@ $("#search-button").click(function() {
       "https://openweathermap.org/img/wn/" + todayIcon + ".png";
 
     // append icon for today's weather next to header (city name and date)
-    $("h3").append("<img src =" + todayIconURL + ">");
+    $(header).append("<img src =" + todayIconURL + ">");
 
     // append temperature in Fahrenheit
     var kelvin = response.main.temp;
