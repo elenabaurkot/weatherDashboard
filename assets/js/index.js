@@ -6,37 +6,43 @@ var date = moment().format("l");
 
 var searches = [];
 
-// init();
+init();
 
-function renderSearches(){
-    citySearchList.innerHTML = '';
-    var search = $("#city-search").val();
-    console.log(search);
-    // create list item element and add CSS
-    var li = document.createElement("li");
-    li.textContent = search;
-    // li.setAttribute("data-index", i);
-    // li.textContent = search;
-    li.setAttribute("class", "list");
-    // add search to the list
-    citySearchList.append(li);
-};
+function renderSearches() {
+  // citySearchList.innerHTML = '';
+  var search = $("#city-search").val();
+  console.log(search);
+  // create list item element and add CSS
+  var li = document.createElement("li");
+  li.textContent = search;
+  li.setAttribute("class", "list");
+  // add search to the list
+  citySearchList.append(li);
+}
 
 // get stored searches from local storage
 // parse JSON string to object
-function init(){
-  var storedSearches = JSON.parse(localStorage.getItem("searches"))
+function init() {
+  var storedSearches = JSON.parse(localStorage.getItem("searches"));
   if (storedSearches !== null) {
     searches = storedSearches;
+  } else {
+    return;
   }
-// render searches to the DOM
-renderSearches();
-};
+  var keys = Object.entries(storedSearches);
+  keys.forEach(([key, value]) => {
+    // create a list item for each value in storage and append it to the city-search list
+    var li = document.createElement("li");
+    li.textContent = value;
+    li.setAttribute("class", "list");
+    citySearchList.append(li);
+  });
+}
 
-function storeSearches(){
+function storeSearches() {
   // set array with new item
   localStorage.setItem("searches", JSON.stringify(searches));
-};
+}
 
 // API key
 var APIKey = "4e94c09846770a8063c5b4f4cf22765d";
@@ -45,14 +51,13 @@ var APIKey = "4e94c09846770a8063c5b4f4cf22765d";
 $("#search-button").click(function() {
   event.preventDefault();
 
-  document.querySelector("#city-info").innerHTML = '';
-  document.getElementById("day7").innerHTML = '';
-  document.getElementById("day15").innerHTML = '';
-  document.getElementById("day23").innerHTML = '';
-  document.getElementById("day31").innerHTML = '';
-  document.getElementById("day39").innerHTML = '';
+  document.querySelector("#city-info").innerHTML = "";
+  document.getElementById("day7").innerHTML = "";
+  document.getElementById("day15").innerHTML = "";
+  document.getElementById("day23").innerHTML = "";
+  document.getElementById("day31").innerHTML = "";
+  document.getElementById("day39").innerHTML = "";
 
-  
   // cityInfoDiv.empty();
   var city = $("#city-search").val();
 
@@ -62,21 +67,20 @@ $("#search-button").click(function() {
   }
   // Add new search to searches array, clear the input
   searches.push(city);
-  $("#city-search").innerHTML= '';
-  
+  $("#city-search").innerHTML = "";
+
   // Store updated searches in localStorage, re-render the list
   storeSearches();
   renderSearches();
 
   // adds border box and spacing for city info content
   cityInfoDiv.addClass("info-container");
- 
+
   // create header element
-  var header = document.createElement("h3")
+  var header = document.createElement("h3");
   // append header with city search name and date
   header.innerHTML = city + " (" + date + ")";
   cityInfoDiv.append(header);
-
 
   // query URL for city conditions
   var queryURL =
@@ -91,7 +95,6 @@ $("#search-button").click(function() {
     url: queryURL,
     method: "GET"
   }).then(function(response) {
-    
     console.log(response);
 
     // icon for today's weather
@@ -136,17 +139,16 @@ $("#search-button").click(function() {
       var uvDiv = $("<div>");
       $(cityInfoDiv).append("UV Index: ");
       // append the actual UV index with class to add the coloring
-      if (uvIndex < 3){
+      if (uvIndex < 3) {
         $("<span/>", { class: "uvGreen", html: uvIndex }).appendTo(cityInfoDiv);
-        }
-        else if (uvIndex > 3 && uvIndex < 7){
-          $("<span/>", { class: "uvYellow", html: uvIndex }).appendTo(cityInfoDiv);
-        }
-        else {
-          $("<span/>", { class: "uvRed", html: uvIndex }).appendTo(cityInfoDiv);
-        }
-        }
-      );
+      } else if (uvIndex > 3 && uvIndex < 7) {
+        $("<span/>", { class: "uvYellow", html: uvIndex }).appendTo(
+          cityInfoDiv
+        );
+      } else {
+        $("<span/>", { class: "uvRed", html: uvIndex }).appendTo(cityInfoDiv);
+      }
+    });
 
     // query URL for five day forecast
     var queryURL =
@@ -164,24 +166,27 @@ $("#search-button").click(function() {
       console.log(response);
       console.log("this is the length: " + response.list.length);
 
-
       // for loop to append class for 5-day weather containers
-      for (var i = 7; i < response.list.length; i+=8) {
-      $("#day" + i).addClass("five-day-weather");
-      // convert date from unix time stamp to mm/dd/yyyy format
-      var unixTime = new Date((response.list[i].dt)* 1000).toLocaleDateString("en-US");
-      // date
-      var date = "<strong>" + unixTime + "</strong><br/>";
-      // icon
-      var icon = response.list[i].weather[0].icon;
-      var iconURL = "<img src=https://openweathermap.org/img/wn/" + icon + ".png>  <br>";
-      // temp
-      kelvin = response.list[i].main.temp;
-      var temp = "Temp: " + Math.floor((kelvin - 273.15) * 1.8 + 32) + "&deg; F<br>";
-      // humidity
-      humidity = "Humidity: " + response.list[i].main.humidity + "%";
-      // append date, icon, temp, humidity
-      $("#day" + i).append(date, iconURL, temp, humidity);
+      for (var i = 7; i < response.list.length; i += 8) {
+        $("#day" + i).addClass("five-day-weather");
+        // convert date from unix time stamp to mm/dd/yyyy format
+        var unixTime = new Date(response.list[i].dt * 1000).toLocaleDateString(
+          "en-US"
+        );
+        // date
+        var date = "<strong>" + unixTime + "</strong><br/>";
+        // icon
+        var icon = response.list[i].weather[0].icon;
+        var iconURL =
+          "<img src=https://openweathermap.org/img/wn/" + icon + ".png>  <br>";
+        // temp
+        kelvin = response.list[i].main.temp;
+        var temp =
+          "Temp: " + Math.floor((kelvin - 273.15) * 1.8 + 32) + "&deg; F<br>";
+        // humidity
+        humidity = "Humidity: " + response.list[i].main.humidity + "%";
+        // append date, icon, temp, humidity
+        $("#day" + i).append(date, iconURL, temp, humidity);
       }
     });
   });
