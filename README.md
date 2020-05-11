@@ -1,36 +1,26 @@
 # Weather Dashboard
+The Weather Dashboard is a site that allows you to search the weather in any city you would like. It uses the OpenWeather API to show the five-day forecast in your searched city and includes icons for the weather. This is the link to the site: https://elenabaurkot.github.io/weatherDashboard/
 
 ## Table of Contents
 <ol>
-    <li><a href="#installation">Installation</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#technologies">Technologies Used</a></li>
     <li><a href="#license">License</a></li>
 </ol>
 
-## Motivation 
-<a name="motivation"></a>
-Being a group of students in a coding bootcamp, we wanted to create a project that was relevant to us. We decided to create a site that uses flashcards that contain real-world interview questions that we found online from Glassdoor and google searches of top interview questions in different langauges. Our site is designed to help anyone who is trying to get ready for a coding interview. 
-
-
-## Installation 
-<a name="installation"></a>
-To use the flipCards application you can clone this link, "git@github.com:adriansap/flipcards.git" and run npm install. 
-
 ## Usage 
 <a name="usage"></a>
-To use this program, run it in your browser and select the language you would like to quiz yourself on from the homepage. After you choose a language, an index card will appear with a question, you can hover your mouse over the top of the card to flip it over and see the answer. Click the next button at the bottom of the page to see the next question. If you would like to switch decks you can click to the homepage pick a new language to quiz yourself on. 
+To use the Weather Dashboard you can go to the following link https://elenabaurkot.github.io/weatherDashboard/ and search for the city you would like to know the weather for. 
 
 
 ## Technologies Used
  <a name="technologies"></a>
 <ul>
-    <li>Express</li>
-    <li>Express Handlebars</li>
-    <li>mySQL</li>
     <li>Javascript</li>
     <li>JQuery</li>
-    <li>ORM</li>
+    <li>AJAX</li>
+    <li>APIs</li>
+    <li>Local Storage</li>
 </ul>
 
 ## License 
