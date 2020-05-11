@@ -19,7 +19,6 @@ To use the Weather Dashboard you can go to the following link https://elenabaurk
     <li>Javascript</li>
     <li>JQuery</li>
     <li>AJAX</li>
-    <li>APIs</li>
     <li>Local Storage</li>
 </ul>
 
