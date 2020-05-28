@@ -1,6 +1,8 @@
 # Weather Dashboard
 The Weather Dashboard is a site that allows you to search the weather in any city you would like. It uses the OpenWeather API to show the five-day forecast in your searched city and includes icons for the weather. This is the link to the site: https://elenabaurkot.github.io/weatherDashboard/
 
+<img src= 'https://res.cloudinary.com/dsxuuory9/image/upload/v1589206175/portfolio/Screen_Shot_2020-05-11_at_10.09.30_AM_rmszdw.png' />
+
 ## Table of Contents
 <ol>
     <li><a href="#usage">Usage</a></li>
